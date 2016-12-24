@@ -1,0 +1,4 @@
+<Panel ux:Class="BlackText">
+  <string ux:Property="Value" />
+  <Text TextColor="#000" Value="{Property Value}"/>
+</Panel>

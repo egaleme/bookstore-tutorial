@@ -1,0 +1,34 @@
+<Panel ux:Class="Detail" >
+  <Router ux:Dependency="router" />
+  <JavaScript File="Detail.js" />
+  <DockPanel>
+  <DockPanel Dock="Top">
+    <Panel Height="48" Color="#ea3535">
+      <Text TextColor="#fff" Value="{title}" Alignment="Center" Margin="7,5,5,5"/>
+      <Image File="../Assets/cart.png" Alignment="CenterRight" Margin="5,5,7,5" />
+    </Panel>
+  </DockPanel>
+  <ScrollView>
+    <StackPanel>
+      <DockPanel>
+        <Grid RowCount="3" Margin="10" Alignment="Center">
+          <BlackText Value="{title}"/>
+          <BlackText Value="{publicationdate}"/>
+          <BlackText Value="{author}"/>
+        </Grid>
+      </DockPanel>
+      <StackPanel Margin="10">
+        <Rectangle Height="1" Color="#ea353580" Opacity="0.5" Margin="10"/>
+        <Image File="{picture}" Margin="10" Alignment="Center" />
+        <BlackText Value="{authorbio}" Alignment="Center"/>
+        <TextView TextWrapping="Wrap" Value="{introduction}" Margin="10" TextColor="#000" Alignment="Center" />
+        <BlackText Value="{price}" Alignment="Center" Margin="20" />
+        <Rectangle HitTestMode="LocalBounds" Color="#ea3535" Height="40" Width="100%" Margin="10" CornerRadius="10">
+          <Text TextColor="#fff" Value="Add To Cart" Alignment="Center" />
+          <Tapped Handler="{addToCart}"/>
+        </Rectangle>
+      </StackPanel>
+    </StackPanel>
+  </ScrollView>
+  </DockPanel>
+</Panel>

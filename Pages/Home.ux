@@ -1,0 +1,32 @@
+<Panel ux:Class="Home">
+  <Router ux:Dependency="router" />
+  <JavaScript File="Home.js" />
+  <DockPanel>
+    <DockPanel Dock="Top">
+      <Panel Height="48" Color="#ea3535">
+        <Text TextColor="#fff" Value="Browse Books" FontSize="20" Alignment="Center" Margin="7,5,5,5"/>
+        <Image File="../Assets/cart.png" Alignment="CenterRight" Margin="5,5,7,5">
+          <Tapped Handler="{goToCart}"/>
+        </Image>
+      </Panel>
+    </DockPanel>
+    <ScrollView>
+      <StackPanel>
+        <Each Items="{books}">
+          <DockPanel>
+            <Rectangle Height="1" Color="#ea353580" Opacity="0.5" Dock="Top"/>
+            <DockPanel HitTestMode="LocalBounds">
+              <Image File="{picture}" Dock="Left" Margin="10" Height="75" Width="75"/>
+              <Grid Rows="1*,1*,1*" Margin="10">
+                <Text TextColor="#000" Value="{title}" />
+                <Text TextColor="#000" Value="{author}"/>
+                <Text TextColor="#000" Value="{publicationdate}" />
+              </Grid>
+              <Tapped Handler="{getBookDetail}" />
+            </DockPanel>
+          </DockPanel>
+        </Each>
+      </StackPanel>
+    </ScrollView>
+  </DockPanel>
+</Panel>

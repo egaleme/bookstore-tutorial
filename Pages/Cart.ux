@@ -1,0 +1,62 @@
+<Panel ux:Class="Cart">
+  <Router ux:Dependency="router" />
+  <JavaScript File="Cart.js" />
+  <DockPanel>
+    <DockPanel Dock="Top">
+      <Panel Height="48" Color="#ea3535">
+        <Text TextColor="#fff"  Value="Home" Alignment="CenterLeft" Margin="7,5,5,5">
+          <Tapped Handler="{goHome}"/>
+        </Text>
+        <Text TextColor="#fff" Value="Your cart" Alignment="Center" Margin="7,5,5,5"/>
+        <Image File="../Assets/cart.png" Alignment="CenterRight" Margin="5,5,7,5" />
+      </Panel>
+    </DockPanel>
+    <DockPanel>
+      <Panel Dock="Top" Margin="10">
+        <Panel ux:Name="noBooks" Color="#000" Opacity="0.4">
+          <Text TextColor="#fff" Alignment="Center" Value="No books in the cart" />
+          <WhileFalse Value="{noItems}">
+            <Scale Factor="0"/>
+            <Change noBooks.Opacity="0"/>
+          </WhileFalse>
+        </Panel>
+        <Panel ux:Name="checkout" Color="#000" Opacity="0.4">
+          <StackPanel>
+            <Text TextColor="#fff" Value="{todaysDate}" Alignment="Center" Margin="10"/>
+            <StackPanel Orientation="Horizontal" Alignment="Center">
+              <Text TextColor="White" Value="Quantity of items :" Alignment="Center" Margin="10" />
+              <Text TextColor="#fff" Value="{qty}" Alignment="Center" Margin="10"/>
+            </StackPanel>
+            <Text TextColor="#fff" Value="{totalAmount}" Alignment="Center" Margin="10" />
+          </StackPanel>
+          <WhileTrue Value="{noItems}">
+            <Scale Factor="0" />
+            <Change checkout.Opacity="0" />
+          </WhileTrue>
+        </Panel>
+      </Panel>
+      <ScrollView>
+        <StackPanel>
+          <Each Items="{cart}">
+            <DockPanel>
+              <Rectangle Height="1" Color="#ea353580" Opacity="0.3" Dock="Top"/>
+              <Image File="{picture}" Dock="Left" Height="75" Width="75" Margin="10"/>
+              <Grid Rows="1*,1*,1*" Margin="10">
+                <BlackText Value="{title}" />
+                <BlackText Value="{author}"/>
+                <StackPanel Orientation="Horizontal">
+                  <BlackText Value="$"/>
+                  <BlackText Value="{cost}" />
+                  <Rectangle  HitTestMode="LocalBounds" Margin="10,0,0,0" Alignment="Right" ux:Name="removeBtn" Color="#ea3535" Height="15">
+                    <Text TextColor="White" FontSize="10" Value="Remove" Alignment="Center" />
+                    <Tapped Handler="{remove}" />
+                  </Rectangle>
+                </StackPanel>
+              </Grid>
+            </DockPanel>
+          </Each>
+        </StackPanel>
+      </ScrollView>
+    </DockPanel>
+  </DockPanel>
+</Panel>
