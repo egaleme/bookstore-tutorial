@@ -1,8 +1,8 @@
 var Context = require("Modules/Context");
 
 function getBookDetail(args) {
-  var book = args.data
-  router.push("detail", book)
+  Context.book.value = args.data
+  router.push("detail")
 }
 
 function goToCart() {

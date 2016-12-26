@@ -7,12 +7,14 @@ var cart = Observable();
 var isCartEmpty = Observable(true);
 var total = Observable(0);
 var totalAmount = Observable();
+var book = Observable();
 
 function getBooks() {
   Backend.getBooks()
   .then(function(data) {
     store.replaceAll(data)
     store.forEach(function(item) {
+      item.isRemoved = Observable(false)
       books.add(item)
     })
   })
@@ -24,7 +26,8 @@ function getBooks() {
 getBooks();
 
 function addToCart(id, cost, title, picture, author) {
-  cart.add({id: id, cost: cost, title: title, picture: picture, author: author, qty:1})
+  var isRemoved = Observable(false)
+  cart.add({id: id, isRemoved: isRemoved, cost: cost, title: title, picture: picture, author: author, qty:1})
   total.value = 0
   cart.forEach(function(item) {
     total.value = (total.value + item.cost)
@@ -46,6 +49,7 @@ function removeFromCart(item) {
 }
 
 module.exports = {
+  book,
   books,
   addToCart,
   isCartEmpty,

@@ -1,39 +1,38 @@
 var Context = require("Modules/Context");
 
-var book = this.Parameter;
-var title = book.map(function(x) {
+var title = Context.book.map(function(x) {
   return x.title
 });
 
-var id = book.map(function(x) {
+var id = Context.book.map(function(x) {
   return x.id
 });
 
-var publicationdate = book.map(function(x) {
+var publicationdate = Context.book.map(function(x) {
   return x.publicationdate
 });
 
-var author = book.map(function(x) {
+var author = Context.book.map(function(x) {
   return x.author
 });
 
-var authorbio = book.map(function(x) {
+var authorbio = Context.book.map(function(x) {
   return x.authorbio
 });
 
-var picture = book.map(function(x) {
+var picture = Context.book.map(function(x) {
   return x.picture
 });
 
-var cost = book.map(function(x) {
+var cost = Context.book.map(function(x) {
   return x.cost
 });
 
-var introduction = book.map(function(x) {
+var introduction = Context.book.map(function(x) {
   return x.introduction
 });
 
-var price = book.map(function(x) {
+var price = Context.book.map(function(x) {
   return "Price : $" +x.cost
 });
 

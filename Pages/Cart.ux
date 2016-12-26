@@ -1,6 +1,7 @@
 <Panel ux:Class="Cart">
   <Router ux:Dependency="router" />
   <JavaScript File="Cart.js" />
+  <SwipeGesture ux:Name="swipeGesture" Direction="Left" Length="70" Type="Active"/>
   <DockPanel>
     <DockPanel Dock="Top">
       <Panel Height="48" Color="#ea3535">
@@ -41,18 +42,36 @@
             <DockPanel>
               <Rectangle Height="1" Color="#ea353580" Opacity="0.3" Dock="Top"/>
               <Image File="{picture}" Dock="Left" Height="75" Width="75" Margin="10"/>
-              <Grid Rows="1*,1*,1*" Margin="10">
-                <BlackText Value="{title}" />
-                <BlackText Value="{author}"/>
-                <StackPanel Orientation="Horizontal">
-                  <BlackText Value="$"/>
-                  <BlackText Value="{cost}" />
-                  <Rectangle  HitTestMode="LocalBounds" Margin="10,0,0,0" Alignment="Right" ux:Name="removeBtn" Color="#ea3535" Height="15">
+              <Panel>
+                <Grid ux:Name="grid" Rows="1*,1*,1*" Margin="10">
+                  <BlackText Value="{title}" />
+                  <BlackText Value="{author}"/>
+                  <StackPanel Orientation="Horizontal">
+                    <BlackText Value="$"/>
+                    <BlackText Value="{cost}" />
+                  </StackPanel>
+                </Grid>
+                <StackPanel Opacity="0" Orientation="Horizontal" ux:Name="removeBtn">
+                  <Rectangle  HitTestMode="LocalBounds" Margin="10,0,0,0" Color="#ea3535" Height="15">
                     <Text TextColor="White" FontSize="10" Value="Remove" Alignment="Center" />
                     <Tapped Handler="{remove}" />
                   </Rectangle>
+                  <Rectangle  HitTestMode="LocalBounds" Margin="10,0,0,0"  Color="#ea3535" Height="15">
+                    <Text TextColor="White" FontSize="10" Value="undo" Alignment="Center" />
+                    <Tapped Handler="{undo}" />
+                  </Rectangle>
                 </StackPanel>
-              </Grid>
+                <WhileTrue Value="{isRemoved}">
+                  <Scale Target="removeBtn" Factor="1"/>
+                  <Change removeBtn.Opacity="1"/>
+                  <Scale Target="grid" Factor="0" />
+                  <Change grid.Opacity="0" />
+                </WhileTrue>
+                <Tapped>
+                  <Callback Handler="{clicked}"/>
+                </Tapped>
+              </Panel>
+
             </DockPanel>
           </Each>
         </StackPanel>
